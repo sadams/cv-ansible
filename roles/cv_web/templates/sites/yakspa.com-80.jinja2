@@ -1,0 +1,22 @@
+
+server {
+  listen 80;
+
+  server_name "www.{{ cv_nginx_public_hostname }}" "{{ cv_nginx_public_hostname }}";
+
+  root "{{ cv_nginx_web_root }}";
+
+  index index.html;
+
+  charset utf-8;
+
+  access_log "{{ cv_nginx_non_secure_log_path }}" json-log-format;
+
+  disable_symlinks off;
+
+  #404 if no matching uri
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+}

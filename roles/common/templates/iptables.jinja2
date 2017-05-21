@@ -1,0 +1,12 @@
+# MANAGED BY ANSIBLE
+# prevent brute force ssh:
+*filter
+:INPUT ACCEPT [33:2125]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [26:13483]
+:LOGDROP - [0:0]
+-A INPUT -i eth0 -p tcp -m tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 --name DEFAULT --mask 255.255.255.255 --rsource -j LOGDROP
+-A INPUT -i eth0 -p tcp -m tcp --dport 22 -m state --state NEW -m recent --set --name DEFAULT --mask 255.255.255.255 --rsource
+-A LOGDROP -j LOG
+-A LOGDROP -j DROP
+COMMIT

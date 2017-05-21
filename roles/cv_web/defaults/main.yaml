@@ -1,0 +1,15 @@
+---
+
+cv_app_version: 0.0.1
+cv_app_name: cv-web
+cv_app_url: "https://github.com/sadams/cv/releases/download/{{ cv_app_version }}/{{ cv_app_version }}.tgz"
+cv_app_basepath: "/opt/webapps/{{ cv_app_name }}"
+cv_app_release_path: "{{ cv_app_basepath }}/{{ cv_app_version }}"
+
+cv_nginx_public_hostname: "yakspa.com"
+cv_nginx_web_root: "/var/www/{{ cv_nginx_public_hostname }}"
+
+#logging
+cv_nginx_tenant: "{{ cv_app_name }}"
+cv_nginx_logs_base: /var/log/nginx
+cv_nginx_non_secure_log_path: "{{ cv_nginx_logs_base }}/{{ cv_nginx_public_hostname }}-non_sec"

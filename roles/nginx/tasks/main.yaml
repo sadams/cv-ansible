@@ -1,0 +1,14 @@
+---
+
+- name: Install Deps
+  become: true
+  apt: name=nginx state=installed cache_valid_time=604800 update_cache=true
+
+- name: default disabled
+  become: true
+  file: state=absent path=/etc/nginx/sites-enabled/default
+  notify: reload nginx
+
+- name: enabled nginx
+  become: true
+  service: name=nginx enabled=true

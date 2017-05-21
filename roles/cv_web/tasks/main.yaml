@@ -1,0 +1,42 @@
+---
+
+- block:
+  - name: app dir present
+    file:
+      state: directory
+      path: "{{ cv_app_release_path }}"
+      owner: www-data
+
+  - name: download release
+    unarchive:
+      src: "{{ cv_app_url }}"
+      dest: "{{ cv_app_release_path }}"
+      remote_src: True
+
+  - name: update webroot symlink
+    file:
+      state: "link"
+      src: "{{ cv_app_release_path }}"
+      dest: "{{ cv_nginx_web_root }}"
+    notify: reload nginx
+
+  - name: template site config
+    template:
+      src: "sites/{{ cv_nginx_public_hostname }}-80.jinja2"
+      dest: "/etc/nginx/sites-available/{{ cv_nginx_public_hostname }}-80"
+    notify: reload nginx
+
+  - name: copy json log format
+    template:
+      src: "conf.d/json-log-format.conf.jinja2"
+      dest: /etc/nginx/conf.d/json-log-format.conf
+    notify: reload nginx
+
+  - name: enable site
+    file:
+      state: "link"
+      src: "/etc/nginx/sites-available/{{ cv_nginx_public_hostname }}-80"
+      dest: "/etc/nginx/sites-enabled/{{ cv_nginx_public_hostname }}-80"
+    notify: reload nginx
+
+  become: true

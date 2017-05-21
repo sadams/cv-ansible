@@ -1,0 +1,6 @@
+---
+
+  - hosts: tag_Name_cv_web_server
+    roles:
+      - common
+      - cv_web

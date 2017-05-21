@@ -1,0 +1,23 @@
+---
+
+- block:
+
+  - name: Install deps
+    apt:
+      name: "{{ item }}"
+      state: present
+      cache_valid_time: 604800
+      update_cache: true
+    environment:
+       DEBIAN_FRONTEND: noninteractive
+    with_items:
+      - htop
+      - iptables-persistent
+
+  - name: Setup iptables rules
+    template:
+      src: iptables.jinja2
+      dest: /etc/iptables/rules.v4
+    notify: restart netfilter-persistent
+
+  become: true

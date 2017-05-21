@@ -1,0 +1,9 @@
+---
+
+- name: restart netfilter-persistent
+  #not sure why 'netfilter-persistent' rather than 'iptables-persistent'... but seems to be new to more recent debian distros...
+  service:
+    name: netfilter-persistent
+    state: restarted
+    enabled: true
+  become: true
