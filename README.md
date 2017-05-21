@@ -36,3 +36,11 @@ locally (via `ansible-pull`):
 1. Log rotation for nginx logs
 1. Maybe add a single, isolated playbook for setting up `ansible-pull` target machine which
 can be directly downloaded and run during bootstrap (i.e. via AWS user data) to install things like log rotation without raw bash: https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml
+
+## Associated repos
+
+To build the servers:
+https://github.com/sadams/cv-tf
+
+The source code for generating the html/css/js that makes up the release package:
+https://github.com/sadams/cv

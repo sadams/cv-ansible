@@ -14,9 +14,9 @@ server {
 
   disable_symlinks off;
 
-  #404 if no matching uri
   location / {
-    try_files $uri $uri/ =404;
+    # allows the html5 routes through to the index page to be parsed on the frontend router
+    try_files $uri $uri/ /index.html;
   }
 
 }
