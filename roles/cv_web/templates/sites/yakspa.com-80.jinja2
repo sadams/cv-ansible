@@ -1,8 +1,6 @@
 
 server {
-  listen 80;
-
-  server_name "www.{{ cv_nginx_public_hostname }}" "{{ cv_nginx_public_hostname }}";
+  listen 80 default_server;
 
   root "{{ cv_nginx_web_root }}";
 
@@ -18,5 +16,4 @@ server {
     # allows the html5 routes through to the index page to be parsed on the frontend router
     try_files $uri $uri/ /index.html;
   }
-
 }
