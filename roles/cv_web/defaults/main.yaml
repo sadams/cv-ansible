@@ -12,4 +12,5 @@ cv_nginx_web_root: "/var/www/{{ cv_nginx_public_hostname }}"
 #logging
 cv_nginx_tenant: "{{ cv_app_name }}"
 cv_nginx_logs_base: /var/log/nginx
-cv_nginx_non_secure_log_path: "{{ cv_nginx_logs_base }}/{{ cv_nginx_public_hostname }}-non_sec"
+#any files matching /var/log/nginx/*.log will be automatically picked up by nginx logrotate script: /etc/logrotate.d/nginx
+cv_nginx_non_secure_log_path: "{{ cv_nginx_logs_base }}/{{ cv_nginx_public_hostname }}-non_sec.log"
