@@ -1,6 +1,6 @@
 ---
 
-cv_app_version: 0.0.5
+cv_app_version: 0.0.6
 cv_app_name: cv-web
 cv_app_url: "https://github.com/sadams/cv/releases/download/{{ cv_app_version }}/{{ cv_app_version }}.tgz"
 cv_app_basepath: "/opt/webapps/{{ cv_app_name }}"
